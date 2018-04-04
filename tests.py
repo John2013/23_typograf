@@ -18,8 +18,8 @@ class TestTypograf(unittest.TestCase):
 
     def test_fix_dashes_in_phones(self):
         self.assertEqual(
-            t.fix_dashes_in_phones('+7(999)999\u201399\u201399'),
-            'раз-два раз \u2013 два'
+            t.fix_dashes_in_phones('текст +7(999)999\u201399\u201399 текст'),
+            'текст +7(999)999-99-99 текст'
         )
 
     def test_put_non_breaking_space_after_numbers(self):
