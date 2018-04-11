@@ -18,14 +18,14 @@ class TestTypograf(unittest.TestCase):
 
     def test_fix_dashes_in_phones(self):
         self.assertEqual(
-            t.fix_dashes_in_phones('текст +7(999)999\u201399\u201399 текст'),
-            'текст +7(999)999-99-99 текст'
+            t.fix_dashes_in_phones('текст +7(999)999\u201399-99 текст'),
+            'текст +7(999)999\u201199\u201199 текст'
         )
 
     def test_put_non_breaking_space_after_numbers(self):
         self.assertEqual(
-            t.put_non_breaking_space_after_numbers('10 000 руб.'),
-            '10\u00A0000\u00A0руб.'
+            t.put_non_breaking_space_after_numbers('+7(999)999-99-99 10 000 руб.'),
+            '+7(999)999-99-99 10\u00A0000\u00A0руб.'
         )
 
     def test_remove_extra_space(self):
@@ -37,7 +37,7 @@ class TestTypograf(unittest.TestCase):
     def test_link_conjunctions_with_words(self):
         self.assertEqual(
             t.link_conjunctions_with_words('кофе с молоком'),
-            'кофе\u00A0с\u00A0молоком'
+            'кофе с\u00A0молоком'
         )
 
 
