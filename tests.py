@@ -2,12 +2,11 @@ import unittest
 import typograf as t
 
 
-# TODO добавить проверку не ломающихся тегов
 class TestTypograf(unittest.TestCase):
     def test_convert_quotes(self):
         self.assertEqual(
-            t.convert_quotes('замена кавычек \' и \" \'раз\' \"два\"'),
-            'замена кавычек \' и \" «раз» «два»'
+            t.convert_quotes('замена кавычек <span class=\'quotes\'>\'кавычки\'\"</span> \' и \" \'раз\' \"два\"'),
+            'замена кавычек <span class=\'quotes\'>«кавычки»\"</span> \' и \" «раз» «два»'
         )
 
     def test_convert_hyphen_to_dash(self):
@@ -24,8 +23,10 @@ class TestTypograf(unittest.TestCase):
 
     def test_put_non_breaking_space_after_numbers(self):
         self.assertEqual(
-            t.put_non_breaking_space_after_numbers('+7(999)999-99-99 10 000 руб.'),
-            '+7(999)999-99-99 10\u00A0000\u00A0руб.'
+            t.put_non_breaking_space_after_numbers(
+                '+7(999)999-99-99 <img src=\'placehold.it/60\' width=60 height=60> 10 000 руб.'
+            ),
+            '+7(999)999-99-99 <img src=\'placehold.it/60\' width=60 height=60> 10\u00A0000\u00A0руб.'
         )
 
     def test_remove_extra_space(self):
