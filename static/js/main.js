@@ -5,7 +5,7 @@ form.onsubmit = function () {
   $.ajax({
     url: '/api/v1.0/perform',
     type: "POST",
-    data: JSON.stringify({"text": "${form.elements.text.value}"}),
+    data: JSON.stringify({"text": form.elements.text.value}),
     contentType: "application/json; charset=utf-8",
     dataType: "json"
   })
