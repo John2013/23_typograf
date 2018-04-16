@@ -2,8 +2,12 @@ from re import sub
 
 
 def convert_quotes(text):
-    text = sub(r'\'([^"«»]*)\'', r'«\1»', text)
-    return sub(r'"([^\'«»]*)"', r'«\1»', text)
+    return sub(
+        r'(<(?:"[^"]*"|\'[^\']*\'|[^\'">])*>)|"([^"]*)"|\'([^\']*)\'',
+        lambda entry:
+        "{}".format(entry.group(1)) if entry.group(1) else "«{}»".format(entry.group(2) or entry.group(3)),
+        text
+    )
 
 
 def convert_hyphen_to_dash(text):
@@ -43,7 +47,7 @@ def perform(text):
 if __name__ == '__main__':
     print(
         perform(
-            "замена кавычек \' и \" \'раз\' \"два\"\n"
+            "замена <span class='quotes'>кавычек</span> \'раз\' \"два\"\n"
             "раз-два раз - два\n"
             "текст +7(999)999\u201399-99 текст\n"
             "+7(999)999\u201399-99 10 000 руб.\n"
@@ -51,7 +55,3 @@ if __name__ == '__main__':
             "кофе с молоком"
         )
     )
-    print(convert_quotes('замена кавычек \' и \" \'раз\' \"два\"'))
-    print(convert_hyphen_to_dash('раз-два раз - два'))
-    print(fix_dashes_in_phones('текст +7(999)999\u201399\u201399 текст'))
-    print(put_non_breaking_space_after_numbers('10 000 руб.'))

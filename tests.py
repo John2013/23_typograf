@@ -5,8 +5,8 @@ import typograf as t
 class TestTypograf(unittest.TestCase):
     def test_convert_quotes(self):
         self.assertEqual(
-            t.convert_quotes('замена кавычек <span class=\'quotes\'>\'кавычки\'\"</span> \' и \" \'раз\' \"два\"'),
-            'замена кавычек <span class=\'quotes\'>«кавычки»\"</span> \' и \" «раз» «два»'
+            t.convert_quotes('замена кавычек <span class=\'quotes\'>\'кавычки\'</span> \'раз\' \"два\"'),
+            'замена кавычек <span class=\'quotes\'>«кавычки»</span> «раз» «два»'
         )
 
     def test_convert_hyphen_to_dash(self):
@@ -39,6 +39,24 @@ class TestTypograf(unittest.TestCase):
         self.assertEqual(
             t.link_conjunctions_with_words('кофе с молоком'),
             'кофе с\u00A0молоком'
+        )
+
+    def test_text_general(self):
+        self.assertEqual(
+            t.perform(
+                "замена <span class='quotes'>кавычек \'раз\' \"два\"</span> \'раз\' \"два\"\n"
+                "раз-два раз - два\n"
+                "текст +7(999)999\u201399-99 текст\n"
+                "+7(999)999\u201399-99 10 000 руб.\n"
+                "раз    два\n\r\n\n\r\rтри\n"
+                "кофе с молоком"
+            ),
+            "замена <span class='quotes'>кавычек «раз» «два»</span> «раз» «два»\n"
+            "раз-два раз \u2013 два\n"
+            "текст +7(999)999\u201199\u201199 текст\n"
+            "+7(999)999‑99‑99 10\u00A0000\u00A0руб.\n"
+            "раз два\nтри\n"
+            "кофе с\u00A0молоком"
         )
 
 
