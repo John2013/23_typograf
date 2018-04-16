@@ -4,9 +4,7 @@ let form = document.querySelector('form'),
 form.onsubmit = function () {
   $.post(
     '/api/v1.0/perform',
-    {
-      text: this.elements.text.value
-    }
+    `{"text": "${this.elements.text.value}"}`
   )
     .success(function (result) {
       console.log(result);
