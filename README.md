@@ -1,7 +1,41 @@
 # Typograf Service
 
-{TODO. There will be project description}
+https://typograph2.herokuapp.com
 
-# Project Goals
+Типограф — это инструмент подготовки русского текста к публикации в вебе.
+Он берет на себя самые рутинные операции, например:
+* замена кавычек ' и " на « »
+* в нужных местах заменить дефисы на тире
+* замена дефисов на короткое тире в номерах телефонов
+* связывание чисел с последующими словами неразрывным пробелом
+* удаление лишних пробелов и переносов строк
+* связывание союзов и любых слов из 1-2 символов с последующими словами
 
-The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
+# Как установить
+
+Python 3 должен бытьустановлен. Используйте pip (или pip3) для установки зависимостей:
+
+```bash
+pip install -r requirements.txt # alternatively try pip3
+```
+
+Рекомендуется использовать [virtualenv/venv](https://devman.org/encyclopedia/pip/pip_virtualenv/).
+
+# Как запустить
+
+1. Запустите сервер:
+   ```bash
+   python server.py #  or python3
+   ```
+2. Перейдите на [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+
+# Как тестировать
+
+```bash
+python tests.py #  or python3
+```
+
+
+# Цели проекта
+
+Код написан для обучения. Тренировочные курсы для веб-разработчиков - [DEVMAN.org](https://devman.org)
