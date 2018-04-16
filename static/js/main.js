@@ -11,7 +11,7 @@ form.onsubmit = function () {
   })
     .success(function (result) {
       console.log(result);
-      resultTextarea.value = result
+      resultTextarea.value = result.result
     })
     .error(function (message) {
       console.log(message)
