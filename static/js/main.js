@@ -7,10 +7,8 @@ form.onsubmit = function () {
     type: "POST",
     data: JSON.stringify({"text": form.elements.text.value}),
     contentType: "application/json; charset=utf-8",
-    dataType: "json"
   })
     .success(function (result) {
-      console.log(result);
       resultTextarea.value = result.result
     })
     .error(function (message) {
