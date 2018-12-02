@@ -5,9 +5,8 @@ def convert_quotes(text):
     return sub(
         r'(<(?:"[^"]*"|\'[^\']*\'|[^\'">])*>)|"([^"]*)"|\'([^\']*)\'',
         lambda entry:
-        "{}".format(entry.group(1)) if entry.group(1) else "«{}»".format(
-            entry.group(2) or entry.group(3)
-        ),
+        "{}".format(entry.group(1)) if entry.group(1) else
+            "«{}»".format(entry.group(2) or (entry.group(3) or '')),
         text
     )
 
