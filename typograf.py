@@ -5,7 +5,9 @@ def convert_quotes(text):
     return sub(
         r'(<(?:"[^"]*"|\'[^\']*\'|[^\'">])*>)|"([^"]*)"|\'([^\']*)\'',
         lambda entry:
-        "{}".format(entry.group(1)) if entry.group(1) else "«{}»".format(entry.group(2) or entry.group(3)),
+        "{}".format(entry.group(1)) if entry.group(1) else "«{}»".format(
+            entry.group(2) or entry.group(3)
+        ),
         text
     )
 
@@ -16,7 +18,9 @@ def convert_hyphen_to_dash(text):
 
 def fix_dashes_in_phones(text):
     return sub(
-        r'((?:(?:\+7)|(?:8))\s?\(?\d{3}\)?\s?\d{3})(?:\s?[-\s\u2013]\s?)(\d{2})(?:\s?[-\s\u2013]\s?)(\d{2})',
+        r'((?:(?:\+7)|(?:8))\s?\(?\d{3}\)?\s?\d{3})'
+        r'(?:\s?[-\s\u2013]\s?)(\d{2})'
+        r'(?:\s?[-\s\u2013]\s?)(\d{2})',
         r'\1' + '\u2011' + r'\2' + '\u2011' + r'\3',
         text
     )
