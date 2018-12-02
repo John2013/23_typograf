@@ -2,11 +2,13 @@ from re import sub
 
 
 def convert_quotes(text):
+    in_tag, double, single = 1, 2, 3
+
     return sub(
         r'(<(?:"[^"]*"|\'[^\']*\'|[^\'">])*>)|"([^"]*)"|\'([^\']*)\'',
         lambda entry:
-        "{}".format(entry.group(1)) if entry.group(1) else
-            "«{}»".format(entry.group(2) or (entry.group(3) or '')),
+        "{}".format(entry.group(in_tag)) if entry.group(in_tag) else
+            "«{}»".format(entry.group(double) or (entry.group(single) or '')),
         text
     )
 
