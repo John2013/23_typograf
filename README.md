@@ -13,7 +13,7 @@ https://typograph2.herokuapp.com
 
 # Как установить
 
-Python 3 должен бытьустановлен. Используйте pip (или pip3) для установки зависимостей:
+Python 3 должен быть установлен. Используйте pip (или pip3) для установки зависимостей:
 
 ```bash
 pip install -r requirements.txt # alternatively try pip3
